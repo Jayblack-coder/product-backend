@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Product = require("./module/product.module.js");
 const productRoute = require("./routes/productRoute.js");
 const userRoute = require("./routes/userRoute.js");
-const cors = require("cors");
+const cors = require('cors')
 const dotenv = require("dotenv");
 const app = express();
 
@@ -14,10 +14,14 @@ dotenv.config();
 app.use("/api/product", productRoute);
 app.use("/api/user", userRoute);
 
-app.use(cors());
-
-app.listen(6000,  () =>{
-    console.log("server is running on port 8000");
+app.use(cors())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+  
+app.listen(process.env.PORT,  () =>{
+    console.log("server is running on port 8080");
 });
 app.get("/",(req, res) => {
     res.send("ejimo project");

@@ -73,7 +73,7 @@ const loginuser = async (req, res) => {
             return res.status(400).json({ message: "Invalid password"});
         }
     // res.status(200).json(user);
-    res.send("Successful!");
+    res.send(user);
     } catch (error) {
         res.status(500).json({ message: " Error logging in", error});
     }
